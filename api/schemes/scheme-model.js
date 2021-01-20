@@ -44,10 +44,17 @@ function addStep(stepData, schemeID) {
   return db("steps")
     .where("steps.scheme_id", schemeID)
     .insert(stepData)
-    // .then(([id]) => {
-    //   findSteps(id);
-    // });
+    .then(([id]) => {
+      findSteps(id);
+    });
 }
 
-function update() {}
+function update(changes, id) {
+  return db("schemes")
+    .where("schemes.id", id)
+    .update(changes)
+    .then(() => {
+      return findById(id);
+    });
+}
 function remove() {}
