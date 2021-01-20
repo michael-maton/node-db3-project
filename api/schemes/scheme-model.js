@@ -39,6 +39,15 @@ function add(scheme) {
       return findById(id);
     });
 }
-function addStep() {}
+
+function addStep(stepData, schemeID) {
+  return db("steps")
+    .where("steps.scheme_id", schemeID)
+    .insert(stepData)
+    // .then(([id]) => {
+    //   findSteps(id);
+    // });
+}
+
 function update() {}
 function remove() {}
