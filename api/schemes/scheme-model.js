@@ -58,7 +58,10 @@ function update(changes, id) {
     });
 }
 function remove(id) {
-    return db("schemes")
-        .delete()
-        .where("schemes.id", id)
+  const deleted = findById(id);
+  if (!deleted) {
+    return Promise.resolve(null);
+  } else {
+    return db("schemes").delete().where("schemes.id", id);
+  }
 }
